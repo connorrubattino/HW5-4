@@ -8,12 +8,12 @@ FROM film;
 
 
 
-CREATE OR REPLACE PROCEDURE add_film(title VARCHAR, description TEXT, release_year YEAR, language_id INT2, rental_duration INT2, rental_rate NUMERIC(4,2), "length" INT2, replacement_cost NUMERIC(5,2), rating public.mpaa_rating)
+CREATE OR REPLACE PROCEDURE add_film(title VARCHAR, description VARCHAR, release_year INTEGER, language_id INTEGER, rental_duration INTEGER, rental_rate NUMERIC(4,2), length INTEGER, replace_cost NUMERIC(5,2), rating mpaa_rating)
 LANGUAGE plpgsql
 AS $$
 BEGIN 
-	INSERT INTO film(title, description, release_year, language_id, rental_duration, rental_rate, "length", replacement_cost, rating)
-	VALUES(title, description, release_year, language_id, rental_duration, rental_rate, "length", replacement_cost, rating);
+	INSERT INTO film(title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating)
+	VALUES(title, description, release_year, language_id, rental_duration, rental_rate, length, replace_cost, rating);
 END;
 $$;
 
@@ -25,6 +25,12 @@ $$;
 CALL add_film('The Example'::VARCHAR, 'Trials and tribulations of trying to add in films'::TEXT, 2024::YEAR, 1::INT2, 5::INT2, 7.99::NUMERIC, 98::INT2, 25.99::NUMERIC, 'R'::public.mpaa_rating);
 
 CALL add_film('Coding Templars'::VARCHAR, 'Fighting our way through code'::TEXT, 2024::YEAR, 1::INT2, 5::INT2, 9.99::NUMERIC, 128::INT2, 15.99::NUMERIC, 'PG-13'::public.mpaa_rating);
+
+CALL add_film('The Ex', 'Trials', 2024, 1, 5, 7.99, 98, 25.99, 'R');
+
+CALL add_film('March Madness', 'Im going TO be watching hoops ALL day', 2024, 1, 5, 19.99, 200, 75.99, 'R');
+
+
 
 
 
