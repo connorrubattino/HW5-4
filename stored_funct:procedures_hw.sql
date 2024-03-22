@@ -71,3 +71,23 @@ SELECT get_film_count(1);
 SELECT *
 FROM film_category fc 
 ORDER BY category_id;
+
+
+
+
+
+---- could have been much simpler
+--CREATE OR REPLACE FUNCTION get_category_count(_category_id INTEGER)
+--RETURNS INTEGER
+--LANGUAGE plpgsql
+--AS $$
+--	DECLARE cat_count INTEGER;
+--BEGIN
+--	SELECT COUNT(*) INTO cat_count
+--	WHERE film_category.category_id = _category_id;
+--	RETURN cat_count;
+--END;
+--$$;
+
+--SELECT get_category_count(15);
+--SELECT get_category_count(12);
